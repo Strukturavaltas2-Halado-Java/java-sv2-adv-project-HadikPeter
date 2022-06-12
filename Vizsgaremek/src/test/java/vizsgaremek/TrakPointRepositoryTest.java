@@ -3,8 +3,9 @@ package vizsgaremek;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
+import vizsgaremek.coordinate.Coordinate;
+import vizsgaremek.trackpoint.TrackPoint;
+import vizsgaremek.trackpoint.TrakPointRepository;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TrakPointRepositoryTest {

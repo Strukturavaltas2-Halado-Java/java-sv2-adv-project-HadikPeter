@@ -1,9 +1,11 @@
-package vizsgaremek;
+package vizsgaremek.training;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vizsgaremek.user.User;
+import vizsgaremek.trackpoint.TrackPoint;
 
 import javax.persistence.*;
 import java.time.LocalDate;

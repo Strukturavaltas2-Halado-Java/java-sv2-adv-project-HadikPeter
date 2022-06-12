@@ -1,6 +1,8 @@
 package vizsgaremek;
 
 import org.junit.jupiter.api.Test;
+import vizsgaremek.coordinate.Coordinate;
+import vizsgaremek.trackpoint.TrackPoint;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,16 +38,16 @@ class TrackPointTest {
         Coordinate videotonC = new Coordinate(47.1982478,18.426655);
         TrackPoint videoton = new TrackPoint(videotonC, 3);
 
-        Coordinate emokeC = new Coordinate(47.1832769,18.4153648);
-        TrackPoint emoke = new TrackPoint(emokeC, 1);
+        Coordinate tovarosC  = new Coordinate(47.182193, 18.410582);
+        TrackPoint tovaros = new TrackPoint(tovarosC, 1);
         Coordinate lovoldev = new Coordinate(47.1864454,18.424767);
         TrackPoint lovoldevege = new TrackPoint(lovoldev, 2);
         Coordinate lovolde1C = new Coordinate(47.190135, 18.421741);
         TrackPoint lovolde1 = new TrackPoint(lovolde1C, 2);
         Coordinate haleszC = new Coordinate(47.194164, 18.431535);
         TrackPoint halesz = new TrackPoint(haleszC, 1);
-        Coordinate budaiNaygszombatiC = new Coordinate(47.197875, 18.481305);
-        TrackPoint budaiNagyszombati = new TrackPoint(budaiNaygszombatiC, 10);
+        Coordinate budaiNagyszombatiC = new Coordinate(47.197875, 18.481305);
+        TrackPoint budaiNagyszombati = new TrackPoint(budaiNagyszombatiC, 10);
 
         /*System.out.println(korhaz.getDistanceFrom(auchan)); //jó
         System.out.println(korhaz.getDistanceFrom(arena)); //nem jó
@@ -62,7 +64,7 @@ class TrackPointTest {
         System.out.println(videoton.getDistanceFrom(auchan));
         System.out.println(videoton.getDistanceFrom(praktiker));
         System.out.println();*/
-        System.out.println(emoke.getDistanceFrom(lovolde1));
+        System.out.println(tovaros.getDistanceFrom(lovolde1));
         System.out.println(lovolde1.getDistanceFrom(lovoldevege));
         System.out.println(lovoldevege.getDistanceFrom(halesz));
         System.out.println(halesz.getDistanceFrom(budaiNagyszombati));

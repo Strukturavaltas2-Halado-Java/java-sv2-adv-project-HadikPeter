@@ -3,6 +3,8 @@ package vizsgaremek;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import vizsgaremek.coordinate.Coordinate;
+import vizsgaremek.coordinate.CoordinateRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 

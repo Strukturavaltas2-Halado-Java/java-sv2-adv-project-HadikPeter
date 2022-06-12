@@ -1,7 +1,8 @@
-package vizsgaremek;
+package vizsgaremek.user;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import vizsgaremek.training.Training;
 
 import javax.persistence.*;
 import java.util.ArrayList;
