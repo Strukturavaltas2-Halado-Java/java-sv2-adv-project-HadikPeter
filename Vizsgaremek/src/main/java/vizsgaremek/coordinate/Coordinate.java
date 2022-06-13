@@ -23,8 +23,8 @@ public class Coordinate {
     private double latitude;
     private double longitude;
 
-    @OneToOne(mappedBy = "coordinate")
-    private TrackPoint trackPoint;
+    //@OneToOne(mappedBy = "coordinate")
+    //private TrackPoint trackPoint;
 
     public Coordinate(double latitude, double longitude) {
         this.latitude = latitude;
