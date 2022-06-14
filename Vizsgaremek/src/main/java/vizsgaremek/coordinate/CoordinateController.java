@@ -2,9 +2,6 @@ package vizsgaremek.coordinate;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import vizsgaremek.trackpoint.TrackPointCommand;
-import vizsgaremek.trackpoint.TrackPointDto;
-import vizsgaremek.trackpoint.UpdateTrackPointByNameCommand;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,16 +28,16 @@ public class CoordinateController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public CoordinateDto createTrackpoint(@Valid @RequestBody CoordinateCommand command){
+    public CoordinateDto createCoordinate(@Valid @RequestBody CoordinateCommand command){
         return service.createCoordinate(command);
     }
 
-    @PutMapping("/name/{id}")
+    @PutMapping("/lat/{id}")
     public CoordinateDto updateCoordinateLatitude(@PathVariable("id") Long id, UpdateCoordinateLatitude command){
         return service.updateCoordinateLatitude(id, command);
     }
 
-    @PutMapping("/name/{id}")
+    @PutMapping("/long/{id}")
     public CoordinateDto updateCoordinateLongitude(@PathVariable("id") Long id, UpdateCoordinateLongitude command){
         return service.updateCoordinateLongitude(id, command);
     }

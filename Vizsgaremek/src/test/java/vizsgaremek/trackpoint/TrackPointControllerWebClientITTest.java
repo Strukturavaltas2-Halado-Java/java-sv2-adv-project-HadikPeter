@@ -59,7 +59,8 @@ class TrackPointControllerWebClientITTest {
     @Test
     void testDeleteTrackPoint() {
         webTestClient.delete().uri("/api/track/{id}", trackPointDto.getId())
-                .exchange();
+                .exchange()
+                .expectStatus().isNoContent();
         webTestClient.get().uri("/api/track")
                 .exchange()
                 .expectBodyList(TrackPointDto.class)
