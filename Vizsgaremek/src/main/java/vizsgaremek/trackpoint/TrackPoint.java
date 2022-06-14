@@ -40,6 +40,11 @@ public class TrackPoint {
         this.name = name;
     }
 
+    public TrackPoint(String name, double elevation) {
+        this.name = name;
+        this.elevation = elevation;
+    }
+
     public double getDistanceFrom(TrackPoint point) {
         final int REarth = 6371;
         double latDistance = Math.toRadians(point.getCoordinate().getLatitude() - this.coordinate.getLatitude());

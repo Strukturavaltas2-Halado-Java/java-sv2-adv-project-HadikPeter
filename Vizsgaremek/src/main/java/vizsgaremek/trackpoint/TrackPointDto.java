@@ -12,5 +12,5 @@ public class TrackPointDto {
     private Long id;
     private String name;
     private double elevation;
-    //private Coordinate coordinate;
+    private Coordinate coordinate;
 }

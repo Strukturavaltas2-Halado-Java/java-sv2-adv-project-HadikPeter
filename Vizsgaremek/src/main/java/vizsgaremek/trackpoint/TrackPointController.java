@@ -3,6 +3,7 @@ package vizsgaremek.trackpoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,23 +18,23 @@ public class TrackPointController {
     }
 
     @GetMapping
-    public List<TrackPointDto> listAllTrackPoint(){
-        return service.listAllTrackpoint();
+    public List<TrackPointDto> listAllTrackPoint(@RequestParam Optional<Double> elevation){
+        return service.listAllTrackpoint(elevation);
     }
 
-    /*@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public TrackPointDto findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public TrackPointDto createTrackpoint(@RequestBody TrackPointCommand command){
+    public TrackPointDto createTrackpoint(@Valid @RequestBody TrackPointCommand command){
         return service.createTrackpoint(command);
     }
 
     @PutMapping("/name/{id}")
-    public TrackPointDto updateTrackByName(@PathVariable("id") Long id, @RequestParam UpdateTrackPointByNameCommand command){
+    public TrackPointDto updateTrackByName(@PathVariable("id") Long id, @Valid UpdateTrackPointByNameCommand command){
         return service.updateTrackPoint(id, command);
     }
 
@@ -41,5 +42,5 @@ public class TrackPointController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTrackPoint(@PathVariable("id") Long id){
         service.deleteTrack(id);
-    }*/
+    }
 }

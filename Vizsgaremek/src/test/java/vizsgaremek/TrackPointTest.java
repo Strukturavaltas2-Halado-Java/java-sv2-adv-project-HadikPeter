@@ -69,5 +69,7 @@ class TrackPointTest {
         System.out.println(lovoldevege.getDistanceFrom(halesz));
         System.out.println(halesz.getDistanceFrom(budaiNagyszombati));
 
+
+
     }
 }

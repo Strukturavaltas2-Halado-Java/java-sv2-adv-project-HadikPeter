@@ -1,9 +1,12 @@
 package vizsgaremek.coordinate;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import vizsgaremek.trackpoint.TrackPointCommand;
+import vizsgaremek.trackpoint.TrackPointDto;
+import vizsgaremek.trackpoint.UpdateTrackPointByNameCommand;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,5 +22,32 @@ public class CoordinateController {
     @GetMapping
     public List<CoordinateDto> listAllCoordinate(){
         return service.listAllCoordinate();
+    }
+
+    @GetMapping("/{id}")
+    public CoordinateDto findById(@PathVariable("id") Long id){
+        return service.findById(id);
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CoordinateDto createTrackpoint(@Valid @RequestBody CoordinateCommand command){
+        return service.createCoordinate(command);
+    }
+
+    @PutMapping("/name/{id}")
+    public CoordinateDto updateCoordinateLatitude(@PathVariable("id") Long id, UpdateCoordinateLatitude command){
+        return service.updateCoordinateLatitude(id, command);
+    }
+
+    @PutMapping("/name/{id}")
+    public CoordinateDto updateCoordinateLongitude(@PathVariable("id") Long id, UpdateCoordinateLongitude command){
+        return service.updateCoordinateLongitude(id, command);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCoordinate(@PathVariable("id") Long id){
+        service.deleteCoordinate(id);
     }
 }

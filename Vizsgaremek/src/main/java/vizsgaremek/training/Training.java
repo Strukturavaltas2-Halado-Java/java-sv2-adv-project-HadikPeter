@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vizsgaremek.user.User;
 import vizsgaremek.trackpoint.TrackPoint;
 
 import javax.persistence.*;
@@ -29,8 +28,6 @@ public class Training {
     @Column(name = "training_date")
     private LocalDate date;
 
-    @ManyToOne
-    private User user;
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.PERSIST)
     private List<TrackPoint> trackpoints = new ArrayList<>();

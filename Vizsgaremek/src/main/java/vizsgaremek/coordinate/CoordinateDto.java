@@ -1,14 +1,14 @@
 package vizsgaremek.coordinate;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoordinateDto {
 
+    private Long id;
     private String name;
     private double latitude;
     private double longitude;
