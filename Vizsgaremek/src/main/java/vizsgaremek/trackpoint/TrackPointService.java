@@ -24,8 +24,8 @@ public class TrackPointService {
     }
 
     public TrackPointDto findById(Long id) {
-        TrackPoint trackPoint = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Can't find trackpoint!"));
-        return modelMapper.map(trackPoint, TrackPointDto.class);
+        TrackPoint findTrackPoint = repository.findById(id).orElseThrow(() -> new TrackPointNotFoundException(id));
+        return modelMapper.map(findTrackPoint, TrackPointDto.class);
     }
 
     public TrackPointDto createTrackpoint(TrackPointCommand command) {
@@ -35,7 +35,7 @@ public class TrackPointService {
     }
 
     public TrackPointDto updateTrackPoint(Long id, UpdateTrackPointByNameCommand command) {
-        TrackPoint findTrackPoint = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Can't find trackpoint!"));
+        TrackPoint findTrackPoint = repository.findById(id).orElseThrow(() -> new TrackPointNotFoundException(id));
         findTrackPoint.setName(command.getName());
         return modelMapper.map(findTrackPoint, TrackPointDto.class);
     }

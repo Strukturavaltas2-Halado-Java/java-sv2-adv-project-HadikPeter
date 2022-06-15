@@ -20,8 +20,8 @@ public class CoordinateService {
     }
 
     public CoordinateDto findById(Long id) {
-        Coordinate coordinate = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Can't find coordinate!"));
-        return modelMapper.map(coordinate, CoordinateDto.class);
+        Coordinate findCoordinate = repository.findById(id).orElseThrow(() -> new CoordinateNotFoundException(id));
+        return modelMapper.map(findCoordinate, CoordinateDto.class);
     }
 
     public CoordinateDto createCoordinate(CoordinateCommand command) {
@@ -31,13 +31,13 @@ public class CoordinateService {
     }
 
     public CoordinateDto updateCoordinateLatitude(Long id, UpdateCoordinateLatitude command) {
-        Coordinate findCoordinate = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Can't find coordinate!"));
+        Coordinate findCoordinate = repository.findById(id).orElseThrow(() -> new CoordinateNotFoundException(id));
         //findCoordinate.setName(command.getName());
         return modelMapper.map(findCoordinate, CoordinateDto.class);
     }
 
     public CoordinateDto updateCoordinateLongitude(Long id, UpdateCoordinateLongitude command) {
-        Coordinate findCoordinate = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Can't find coordinate!"));
+        Coordinate findCoordinate = repository.findById(id).orElseThrow(() -> new CoordinateNotFoundException(id));
         //findCoordinate.setName(command.getName());
         return modelMapper.map(findCoordinate, CoordinateDto.class);
     }
