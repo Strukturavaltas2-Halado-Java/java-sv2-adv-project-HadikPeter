@@ -8,6 +8,8 @@ import vizsgaremek.training.Training;
 import vizsgaremek.coordinate.Coordinate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,8 +29,8 @@ public class TrackPoint {
     private Coordinate coordinate;
     private double elevation; //magasság
 
-    @ManyToOne
-    private Training training;
+    @ManyToMany(mappedBy = "trackpoints")
+    private List<Training> trainings = new ArrayList<>();
 
     public TrackPoint(Coordinate coordinate, double elevation) {
         this.coordinate = coordinate;

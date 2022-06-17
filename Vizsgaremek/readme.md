@@ -17,7 +17,7 @@ docker build -t image neve .
 A lebildelt docker image a következő Docker paranccsal indítható:
 
 ```shell
-docker run -d -p 8080:8080 spring-solutions
+docker run -d -p 8080:8080 spring-vizsgaremek
 ```
 
 A feladatleírást olvasd el részletesen, és

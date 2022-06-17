@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.zalando.problem.Problem;
+import org.zalando.problem.violations.ConstraintViolationProblem;
+
+import javax.swing.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,6 +70,25 @@ class CoordinateControllerWebClientITTest {
                 .exchange()
                 .expectBodyList(CoordinateDto.class)
                 .value(c -> assertThat(c).hasSize(1).extracting(CoordinateDto::getName).containsOnly("tovarosC"));
+    }
+
+    @Test
+    void testCoordinateNotFound(){
+        Problem p = webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/api/coordinates/{id}").build(111))
+                .exchange()
+                .expectBody(Problem.class).returnResult().getResponseBody();
+        assertEquals("Coordinate not found: 111", p.getDetail());
+    }
+
+    @Test
+    void testCreateCoordinateWithWrongLatitude(){
+        ConstraintViolationProblem cvp = webTestClient.post()
+                .uri("/api/coordinates/create")
+                .bodyValue(new CoordinateCommand("haleszC", 39.444555, 18.431535))
+                .exchange()
+                .expectBody(ConstraintViolationProblem.class).returnResult().getResponseBody();
+        assertEquals("The latitude must be greater then 40", cvp.getViolations().get(0).getMessage());
     }
 
 }

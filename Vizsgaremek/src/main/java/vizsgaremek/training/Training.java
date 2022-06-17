@@ -29,7 +29,9 @@ public class Training {
     private LocalDate date;
 
 
-    @OneToMany(mappedBy = "training", cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "training_trackpoint", joinColumns = @JoinColumn(name = "training_id"),
+    inverseJoinColumns = @JoinColumn(name = "trackpoint_id"))
     private List<TrackPoint> trackpoints = new ArrayList<>();
 
     public Training(String name, String description, LocalDate date) {
@@ -40,7 +42,7 @@ public class Training {
 
     public void addTrackpoint(TrackPoint trackPoint) {
         trackpoints.add(trackPoint);
-        trackPoint.setTraining(this);
+        trackPoint.getTrainings().add(this);
     }
 
     public double getTrainingAllDistance() {

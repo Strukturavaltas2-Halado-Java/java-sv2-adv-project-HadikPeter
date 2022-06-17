@@ -3,6 +3,8 @@ package vizsgaremek;
 import org.junit.jupiter.api.Test;
 import vizsgaremek.coordinate.Coordinate;
 import vizsgaremek.trackpoint.TrackPoint;
+import vizsgaremek.trackpoint.TrackPointService;
+import vizsgaremek.training.Training;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,8 +70,5 @@ class TrackPointTest {
         System.out.println(lovolde1.getDistanceFrom(lovoldevege));
         System.out.println(lovoldevege.getDistanceFrom(halesz));
         System.out.println(halesz.getDistanceFrom(budaiNagyszombati));
-
-
-
     }
 }
