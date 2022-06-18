@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
+import vizsgaremek.coordinate.Coordinate;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -29,7 +30,9 @@ public class TrackPointService {
     }
 
     public TrackPointDto createTrackpoint(TrackPointCommand command) {
+        Coordinate coordinate = new Coordinate(command.getName(), command.getCoordinate().getLatitude(), command.getCoordinate().getLongitude());
         TrackPoint trackPoint = new TrackPoint(command.getName(), command.getElevation());
+        trackPoint.setCoordinate(coordinate);
         repository.save(trackPoint);
         return modelMapper.map(trackPoint, TrackPointDto.class);
     }

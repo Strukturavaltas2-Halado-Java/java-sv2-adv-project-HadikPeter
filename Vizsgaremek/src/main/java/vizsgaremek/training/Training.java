@@ -54,4 +54,15 @@ public class Training {
         }
         return sum;
     }
+
+    public double getTrainingSumElevation(){
+        double sum = 0;
+        for (int i = 1; i < trackpoints.size(); i++){
+            double elevationDifference = trackpoints.get(i).getElevation() - trackpoints.get(i-1).getElevation();
+            if(elevationDifference > 0) {
+                sum += elevationDifference;
+            }
+        }
+        return sum;
+    }
 }

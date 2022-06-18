@@ -1,5 +1,6 @@
 package vizsgaremek.trackpoint;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class TrackPoint {
     private String name;
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @JsonManagedReference
     private Coordinate coordinate;
     private double elevation; //magasság
 
@@ -60,4 +62,6 @@ public class TrackPoint {
         distance = Math.pow(distance, 2) + Math.pow(height, 2);
         return Math.sqrt(distance);
     }
+
+
 }

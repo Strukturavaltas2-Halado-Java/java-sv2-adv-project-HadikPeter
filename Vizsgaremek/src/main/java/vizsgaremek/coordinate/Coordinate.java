@@ -1,5 +1,6 @@
 package vizsgaremek.coordinate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,9 @@ public class Coordinate {
     private double latitude;
     private double longitude;
 
-    //@OneToOne(mappedBy = "coordinate")
-    //private TrackPoint trackPoint;
+    @OneToOne(mappedBy = "coordinate")
+    @JsonBackReference
+    private TrackPoint trackPoint;
 
     public Coordinate(double latitude, double longitude) {
         this.latitude = latitude;

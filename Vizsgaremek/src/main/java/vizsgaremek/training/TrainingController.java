@@ -31,6 +31,16 @@ public class TrainingController {
         return service.findById(id);
     }
 
+    @GetMapping("/sum/{id}")
+    public double getSumKm(@PathVariable("id") Long id){
+        return service.getSumKm(id);
+    }
+
+    @GetMapping("/elevation/{id}")
+    public double getSumElevation(@PathVariable("id") Long id){
+        return service.getSumElevation(id);
+    }
+
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public TrainingDto createTraining(@Valid @RequestBody TrainingCommand command){

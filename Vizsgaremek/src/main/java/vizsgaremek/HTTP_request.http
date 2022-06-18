@@ -1,10 +1,10 @@
-POST http://localhost:8080/api/coordinates/create
+POST http://localhost:8080/api/coordinate/create
 Content-Type: application/json
 
 {}
 
 ###
-GET http://localhost:8080/api/coordinates
+GET http://localhost:8080/api/coordinate
 Accept: application/json
 
 ###

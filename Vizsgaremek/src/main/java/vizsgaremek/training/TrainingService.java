@@ -41,4 +41,14 @@ public class TrainingService {
     public void deleteTraining(Long id) {
         repository.deleteById(id);
     }
+
+    public double getSumKm(Long id) {
+        Training findTraining = repository.findById(id).orElseThrow(() -> new TrainingNotFoundException(id));
+        return findTraining.getTrainingAllDistance();
+    }
+
+    public double getSumElevation(Long id) {
+        Training findTraining = repository.findById(id).orElseThrow(() -> new TrainingNotFoundException(id));
+        return findTraining.getTrainingSumElevation();
+    }
 }

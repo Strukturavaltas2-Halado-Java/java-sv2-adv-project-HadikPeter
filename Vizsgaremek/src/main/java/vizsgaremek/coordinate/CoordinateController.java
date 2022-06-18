@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/coordinates")
+@RequestMapping("/api/coordinate")
 public class CoordinateController {
 
     private CoordinateService service;
