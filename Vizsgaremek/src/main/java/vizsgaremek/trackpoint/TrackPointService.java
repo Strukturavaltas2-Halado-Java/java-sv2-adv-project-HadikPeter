@@ -6,6 +6,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import vizsgaremek.coordinate.Coordinate;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,7 @@ public class TrackPointService {
         return modelMapper.map(findTrackPoint, TrackPointDto.class);
     }
 
+
     public TrackPointDto createTrackpoint(TrackPointCommand command) {
         Coordinate coordinate = new Coordinate(command.getName(), command.getCoordinate().getLatitude(), command.getCoordinate().getLongitude());
         TrackPoint trackPoint = new TrackPoint(command.getName(), command.getElevation());
@@ -37,6 +39,7 @@ public class TrackPointService {
         return modelMapper.map(trackPoint, TrackPointDto.class);
     }
 
+    @Transactional
     public TrackPointDto updateTrackPoint(Long id, UpdateTrackPointByNameCommand command) {
         TrackPoint findTrackPoint = repository.findById(id).orElseThrow(() -> new TrackPointNotFoundException(id));
         findTrackPoint.setName(command.getName());

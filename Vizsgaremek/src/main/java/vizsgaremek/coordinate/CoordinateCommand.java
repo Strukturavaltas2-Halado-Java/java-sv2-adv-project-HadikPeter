@@ -22,9 +22,11 @@ public class CoordinateCommand {
 
     @Min(value = 40, message = "The latitude must be greater then 40")
     @Max(value = 50, message = "The latitude must be smaller than 50")
+    @Schema(example = "47.198211")
     private double latitude;
 
     @Min(15)
     @Max(25)
+    @Schema(example = "18.415458")
     private double longitude;
 }

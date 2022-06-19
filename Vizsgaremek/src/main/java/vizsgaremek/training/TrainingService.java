@@ -32,12 +32,6 @@ public class TrainingService {
         return modelMapper.map(training, TrainingDto.class);
     }
 
-    public TrainingDto updateTrainingByName(Long id, UpdateTrainingName command) {
-        Training findTraining = repository.findById(id).orElseThrow(() -> new TrainingNotFoundException(id));
-        //findTraining.setName(command.getName());
-        return modelMapper.map(findTraining, TrainingDto.class);
-    }
-
     public void deleteTraining(Long id) {
         repository.deleteById(id);
     }
