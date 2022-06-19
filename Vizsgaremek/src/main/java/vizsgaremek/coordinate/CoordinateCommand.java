@@ -1,5 +1,6 @@
 package vizsgaremek.coordinate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class CoordinateCommand {
 
     @NotBlank
+    @Schema(description = "name of the coordinate", example = "berényi1C")
     private String name;
 
     @Min(value = 40, message = "The latitude must be greater then 40")

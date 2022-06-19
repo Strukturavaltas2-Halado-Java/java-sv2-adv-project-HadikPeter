@@ -1,5 +1,8 @@
 package vizsgaremek.coordinate;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/coordinate")
+@Tag(name = "Operations the coordinates")
 public class CoordinateController {
 
     private CoordinateService service;
@@ -28,6 +32,8 @@ public class CoordinateController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "creates a coordinate")
+    @ApiResponse(responseCode = "201", description = "coordinates has been created")
     public CoordinateDto createCoordinate(@Valid @RequestBody CoordinateCommand command){
         return service.createCoordinate(command);
     }
