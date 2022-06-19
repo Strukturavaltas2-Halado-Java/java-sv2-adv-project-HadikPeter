@@ -34,7 +34,7 @@ class CoordinateControllerWebClientITTest {
 
     @Test
     void testListAllCoordinate() {
-        webTestClient.get().uri("/api/coordinates")
+        webTestClient.get().uri("/api/coordinate")
                 .exchange()
                 .expectBodyList(CoordinateDto.class)
                 .value(c -> assertThat(c).extracting(CoordinateDto::getName).contains("tovarosC", "lovolde1C"));
@@ -42,7 +42,7 @@ class CoordinateControllerWebClientITTest {
 
     @Test
     void testFindById(){
-        webTestClient.get().uri("/api/coordinates/{id}", coordinateDto.getId())
+        webTestClient.get().uri("/api/coordinate/{id}", coordinateDto.getId())
                 .exchange()
                 .expectBody(CoordinateDto.class)
                 .value(c -> assertEquals("lovolde1C", coordinateDto.getName()))
@@ -52,7 +52,7 @@ class CoordinateControllerWebClientITTest {
 
     @Test
     void testCreateCoordinate(){
-        webTestClient.post().uri("/api/coordinates/create")
+        webTestClient.post().uri("/api/coordinate/create")
                 .bodyValue(new CoordinateCommand("haleszC", 47.194164, 18.431535))
                 .exchange()
                 .expectStatus().isCreated()
@@ -63,10 +63,20 @@ class CoordinateControllerWebClientITTest {
     }
 
     @Test
+    void testUpdateCoordinateLatitude(){
+        webTestClient.put().uri("/api/coordinate/lat/{id}", coordinateDto.getId())
+                .bodyValue(new UpdateCoordinateLatitude(48.111222))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(CoordinateDto.class)
+                .value(CoordinateDto -> assertThat(CoordinateDto.getLatitude()).isEqualTo(48.111222));
+    }
+
+    @Test
     void testDeleteCoordinate(){
-        webTestClient.delete().uri("/api/coordinates/{id}", coordinateDto.getId())
+        webTestClient.delete().uri("/api/coordinate/{id}", coordinateDto.getId())
                 .exchange().expectStatus().isNoContent();
-        webTestClient.get().uri("/api/coordinates")
+        webTestClient.get().uri("/api/coordinate")
                 .exchange()
                 .expectBodyList(CoordinateDto.class)
                 .value(c -> assertThat(c).hasSize(1).extracting(CoordinateDto::getName).containsOnly("tovarosC"));
@@ -75,20 +85,32 @@ class CoordinateControllerWebClientITTest {
     @Test
     void testCoordinateNotFound(){
         Problem p = webTestClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/api/coordinates/{id}").build(111))
+                .uri(uriBuilder -> uriBuilder.path("/api/coordinate/{id}").build(111))
                 .exchange()
                 .expectBody(Problem.class).returnResult().getResponseBody();
         assertEquals("Coordinate not found: 111", p.getDetail());
     }
 
     @Test
-    void testCreateCoordinateWithWrongLatitude(){
+    void testCreateCoordinateWithTooSmallLatitude(){
         ConstraintViolationProblem cvp = webTestClient.post()
-                .uri("/api/coordinates/create")
+                .uri("/api/coordinate/create")
                 .bodyValue(new CoordinateCommand("haleszC", 39.444555, 18.431535))
                 .exchange()
                 .expectBody(ConstraintViolationProblem.class).returnResult().getResponseBody();
-        assertEquals("The latitude must be greater then 40", cvp.getViolations().get(0).getMessage());
+        assertEquals("The latitude must be greater than 40", cvp.getViolations().get(0).getMessage());
     }
+
+    @Test
+    void testCreateCoordinateWithTooHighLongitude(){
+        ConstraintViolationProblem cvp = webTestClient.post()
+                .uri("/api/coordinate/create")
+                .bodyValue(new CoordinateCommand("haleszC", 47.194164, 26.431535))
+                .exchange()
+                .expectBody(ConstraintViolationProblem.class).returnResult().getResponseBody();
+        assertEquals("The longitude must be smaller than 25", cvp.getViolations().get(0).getMessage());
+    }
+
+
 
 }

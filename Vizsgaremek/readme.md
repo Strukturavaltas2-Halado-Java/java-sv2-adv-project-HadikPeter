@@ -55,7 +55,8 @@ Végpontok:
 | DELETE       | `"/api/track/{id}"`      | töröl egy entitást `id` alapján      |
 
 
-Ide még leírhattok sepciális üzleti logikát, pl a dátum nem lehet nagyobb az előzőnél stb stb
+Amikor lementek egy `TrackPointot` az adatbázisba, akkor egy `Coordinate` is lementődik hiszen ez a két entitás elválaszthatatlan
+egymástól. 
 
 ---
 

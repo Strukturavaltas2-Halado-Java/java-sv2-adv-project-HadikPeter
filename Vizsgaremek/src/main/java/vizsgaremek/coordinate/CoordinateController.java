@@ -42,7 +42,7 @@ public class CoordinateController {
 
     @PutMapping("/lat/{id}")
     @Operation(summary = "update a latitude")
-    public CoordinateDto updateCoordinateLatitude(@PathVariable("id") Long id, UpdateCoordinateLatitude command){
+    public CoordinateDto updateCoordinateLatitude(@PathVariable("id") Long id, @RequestBody UpdateCoordinateLatitude command){
         return service.updateCoordinateLatitude(id, command);
     }
 

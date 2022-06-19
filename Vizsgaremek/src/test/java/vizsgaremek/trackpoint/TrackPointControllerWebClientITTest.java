@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import vizsgaremek.coordinate.Coordinate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,8 +25,10 @@ class TrackPointControllerWebClientITTest {
 
     @BeforeEach
     void init() {
-        service.createTrackpoint(new TrackPointCommand("Tóváros", 102.2));
-        trackPointDto = service.createTrackpoint(new TrackPointCommand("Lövölde", 111.7));
+        Coordinate tovaros = new Coordinate("tovarosC", 47.182193, 18.410582);
+        Coordinate lovolde = new Coordinate("lovolde1C", 47.190135, 18.421741);
+        service.createTrackpoint(new TrackPointCommand("Tóváros", 102.2, tovaros));
+        trackPointDto = service.createTrackpoint(new TrackPointCommand("Lövölde", 111.7, lovolde));
     }
 
     @Test
@@ -47,8 +50,9 @@ class TrackPointControllerWebClientITTest {
 
     @Test
     void testCreateTrackPoint() {
+        Coordinate halesz = new Coordinate("haleszC", 47.194164, 18.431535);
         webTestClient.post().uri("/api/track/create")
-                .bodyValue(new TrackPointCommand("Halesz", 114.1))
+                .bodyValue(new TrackPointCommand("Halesz", 114.1, halesz))
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody(TrackPointDto.class)
