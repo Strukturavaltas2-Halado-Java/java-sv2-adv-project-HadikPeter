@@ -26,7 +26,7 @@ public class TrainingCommand {
     @Schema(description = "description of the training", example = "Kora reggeli futás")
     private String description;
 
-    @NotBlank(message = "Please provide a date.")
+    //@NotBlank(message = "Please provide a date.")
     @Schema(example = "2022-05-11")
     private LocalDate date;
 

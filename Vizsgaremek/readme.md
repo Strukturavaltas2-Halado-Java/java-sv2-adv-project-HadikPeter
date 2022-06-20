@@ -3,7 +3,7 @@
 ## Leírás
 
 Az alkalmazás egy futónaplót modellez. Sokan, akik sportolnak vezetik az edzéseiket, innen jött az ötlet. A cél egy olyan 
-alkalmazás létrehozása volt, ami alkalmas futónaplónak is.
+alkalmazás létrehozása volt, ami alkalmas futóedzések vezetésére.
 
 ---
 
@@ -25,7 +25,7 @@ Végpontok:
 | GET          | `"/api/coordinate"`           | lekérdezi az összes entitást       |
 | GET          | `"/api/coordinate/{id}"`      | lekérdez egy entitást `id` alapján |
 | POST         | `"/api/coordinate/create"`    | létrehoz egy új entitást           |
-| PUT          | `"/api/coordinate/lan/{id}"`  | módosítja a latitude attribútumot  |
+| PUT          | `"/api/coordinate/lat/{id}"`  | módosítja a latitude attribútumot  |
 | PUT          | `"/api/coordinate/long/{id}"` | módosítja a longitude attribútumot |
 | DELETE       | `"/api/coordinate/{id}"`      | töröl egy entitást `id` alapján    |
 
