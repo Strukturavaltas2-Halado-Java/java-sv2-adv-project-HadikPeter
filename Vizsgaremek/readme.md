@@ -1,4 +1,4 @@
-readme# Vizsgaremek
+# Vizsgaremek
 
 ## Leírás
 
@@ -17,7 +17,6 @@ A `Coordinate` entitás a következő attribútumokkal rendelkezik:
 * `name` (nem lehet üres)
 * `latitude` (az attribútumnak 40-50 közé kell esnie)
 * `longitude` (az attribútumnak 15-25 közé kell esnie)
-* ... (milyen elvárások vannak az attribútummal szemben pl nem üres, pozitív stb stb)
 
 Végpontok:
 
@@ -30,7 +29,6 @@ Végpontok:
 | PUT          | `"/api/coordinate/long/{id}"` | módosítja a longitude attribútumot |
 | DELETE       | `"/api/coordinate/{id}"`      | töröl egy entitást `id` alapján    |
 
-Ide még leírhattok sepciális üzleti logikát, pl a dátum nem lehet nagyobb az előzőnél stb stb
 
 ---
 
@@ -66,25 +64,26 @@ A `Training ` entitás a következő attribútumokkal rendelkezik:
 
 * `id`
 * `name` (nem lehet üres)
-* `description`
-* `date`
+* `description` (nem lehet üres)
+* `date` (nem lehet nulla vagy üres)
 
 A `Training` és a `TrackPoint` entitások között kétirányú, n-m kapcsolat van.
 
 Végpontok:
 
-| HTTP metódus | Végpont                          | Leírás                                            |
-|--------------|----------------------------------|---------------------------------------------------|
-| GET          | `"/api/training"`                | lekérdezi az összes entitást                      |
-| GET          | `"/api/training/{id}"`           | lekérdez egy entitást `id` alapján                |
-| GET          | `"/api/training/sum/{id}"`       | lekérdezi az edzés hosszát `id` alapján           |
-| GET          | `"/api/training/elevation/{id}"` | lekérdezi az osszes szintemelkedést `id` alapján  |
-| POST         | `"/api/training/create"`         | létrehoz egy új entitást                          |
-| PUT          | `"/api/training/name/{id}"`      | módosítja a name attribútumot                     |
-| DELETE       | `"/api/training/{id}"`           | töröl egy entitást `id` alapján                   |
+| HTTP metódus | Végpont                          | Leírás                                           |
+|-----------|----------------------------------|--------------------------------------------------|
+| GET       | `"/api/training"`                | lekérdezi az összes entitást                     |
+| GET       | `"/api/training/{id}"`           | lekérdez egy entitást `id` alapján               |
+| GET       | `"/api/training/sum/{id}"`       | lekérdezi az edzés hosszát `id` alapján          |
+| GET       | `"/api/training/elevation/{id}"` | lekérdezi az osszes szintemelkedést `id` alapján |
+| POST      | `"/api/training/create"`         | létrehoz egy új entitást                         |
+| DELETE    | `"/api/training/{id}"`           | töröl egy entitást `id` alapján                  |
 
 
-A program kiszámolja az edzés hosszát (sum), az összes szintemelkedést (elevation), amiket a megfelelő végpontokon lehet lekérdezni.
+A program kiszámolja az edzés hosszát (sum), az összes szintemelkedést (elevation), amiket a megfelelő végpontokon lehet
+lekérdezni. Amikor lementek egy `Traininget` az adatbázisba, akkor a hozzá tartozó `TrackPointok` listája is bekerül az adatbázis trackpoints
+táblájába, az ezekhez tartozó koordináták pedig a coordinates táblába.
 
 ---
 A Coordinate és a TrackPoint között 1-1 kapcsolat van, a TrackPoint és a Training közöt pedig több-több kapcsolat,

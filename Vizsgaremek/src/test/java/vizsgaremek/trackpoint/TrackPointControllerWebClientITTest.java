@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.zalando.problem.Problem;
 import vizsgaremek.coordinate.Coordinate;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -61,6 +62,16 @@ class TrackPointControllerWebClientITTest {
     }
 
     @Test
+    void testUpdateTrackPoint(){
+        webTestClient.put().uri("/api/track/name/{id}", trackPointDto.getId())
+                .bodyValue(new UpdateTrackPointByNameCommand("Új név"))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(TrackPointDto.class)
+                .value(TrackPointDto -> assertThat(TrackPointDto.getName()).isEqualTo("Új név"));
+    }
+
+    @Test
     void testDeleteTrackPoint() {
         webTestClient.delete().uri("/api/track/{id}", trackPointDto.getId())
                 .exchange()
@@ -69,5 +80,14 @@ class TrackPointControllerWebClientITTest {
                 .exchange()
                 .expectBodyList(TrackPointDto.class)
                 .value(t -> assertThat(t).hasSize(1).extracting(TrackPointDto::getName).containsOnly("Tóváros"));
+    }
+
+    @Test
+    void testTrackPointNotFound(){
+        Problem p = webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/api/track/{id}").build(111))
+                .exchange()
+                .expectBody(Problem.class).returnResult().getResponseBody();
+        assertEquals("TrackPoint not found: 111", p.getDetail());
     }
 }

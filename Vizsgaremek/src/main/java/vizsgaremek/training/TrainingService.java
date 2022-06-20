@@ -3,6 +3,7 @@ package vizsgaremek.training;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import vizsgaremek.trackpoint.TrackPoint;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,7 +28,9 @@ public class TrainingService {
     }
 
     public TrainingDto createTraining(TrainingCommand command) {
+        List<TrackPoint> trackPoints = command.getTrackpoints();
         Training training = new Training(command.getName(), command.getDescription(), command.getDate());
+        training.setTrackpoints(trackPoints);
         repository.save(training);
         return modelMapper.map(training, TrainingDto.class);
     }

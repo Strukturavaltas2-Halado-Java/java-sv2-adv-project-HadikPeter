@@ -15,7 +15,7 @@ import javax.validation.constraints.PositiveOrZero;
 @AllArgsConstructor
 public class TrackPointCommand {
 
-    @NotBlank
+    @NotBlank(message = "Please provide a name.")
     @Schema(description = "name of the trackpoint", example = "Berényi út eleje")
     private String name;
 
@@ -23,7 +23,6 @@ public class TrackPointCommand {
     @Schema(description = "value of elevation", example = "111.3")
     private double elevation;
 
-    @Schema(hidden = true)
     private Coordinate coordinate;
 
     public TrackPointCommand(String name, double elevation) {

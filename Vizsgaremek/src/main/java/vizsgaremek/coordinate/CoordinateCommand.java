@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class CoordinateCommand {
 
-    @NotBlank
+    @NotBlank(message = "Please provide a name.")
     @Schema(description = "name of the coordinate", example = "berényi1C")
     private String name;
 

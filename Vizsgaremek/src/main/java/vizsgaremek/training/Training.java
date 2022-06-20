@@ -40,6 +40,12 @@ public class Training {
         this.date = date;
     }
 
+    public Training(String name, String description, List<TrackPoint> trackpoints) {
+        this.name = name;
+        this.description = description;
+        this.trackpoints = trackpoints;
+    }
+
     public void addTrackpoint(TrackPoint trackPoint) {
         trackpoints.add(trackPoint);
         trackPoint.getTrainings().add(this);
@@ -47,8 +53,8 @@ public class Training {
 
     public double getTrainingAllDistance() {
         double sum = 0;
-        for (int i = 0; i < trackpoints.size(); i++) {
-            double distance = trackpoints.get(i).getDistanceFrom(trackpoints.get(1+1));
+        for (int i = 0; i < trackpoints.size() - 1; i++) {
+            double distance = trackpoints.get(i).getDistanceFrom(trackpoints.get(i+1));
             sum += distance;
             System.out.println(sum);
         }

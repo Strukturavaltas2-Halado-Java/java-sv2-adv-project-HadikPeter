@@ -43,7 +43,7 @@ public class TrackPointController {
 
     @PutMapping("/name/{id}")
     @Operation(summary = "update a trackpoint")
-    public TrackPointDto updateTrackByName(@PathVariable("id") Long id, @Valid UpdateTrackPointByNameCommand command){
+    public TrackPointDto updateTrackByName(@PathVariable("id") Long id, @Valid @RequestBody UpdateTrackPointByNameCommand command){
         return service.updateTrackPoint(id, command);
     }
 

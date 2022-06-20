@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vizsgaremek.trackpoint.TrackPoint;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
