@@ -1,7 +1,7 @@
 package vizsgaremek.trackpoint;
 
 import lombok.*;
-import vizsgaremek.coordinate.Coordinate;
+import vizsgaremek.coordinate.CoordinateDto;
 
 
 @Data
@@ -12,5 +12,5 @@ public class TrackPointDto {
     private Long id;
     private String name;
     private double elevation;
-    private Coordinate coordinate;
+    private CoordinateDto coordinate;
 }

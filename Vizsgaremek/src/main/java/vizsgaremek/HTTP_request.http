@@ -31,7 +31,7 @@ Content-Type: application/json
 }
 
 ###Delete
-DELETE http://localhost:8080/api/coordinate/1
+DELETE http://localhost:8080/api/coordinate/8
 Accept: application/json
 
 ###TrackPoint----------------------------------------------------------------------------
@@ -69,7 +69,7 @@ Content-Type: application/json
 }
 
 ###Delete
-DELETE http://localhost:8080/api/track/11
+DELETE http://localhost:8080/api/track/8
 Accept: application/json
 
 ###Training------------------------------------------------------------------------
@@ -77,15 +77,15 @@ GET http://localhost:8080/api/training
 Accept: application/json
 
 ###Get/id
-GET http://localhost:8080/api/training/3
+GET http://localhost:8080/api/training/2
 Accept: application/json
 
 ###Get/sum- edzés hossza m-ben
-GET http://localhost:8080/api/training/sum/3
+GET http://localhost:8080/api/training/sum/1
 Accept: application/json
 
 ###Get/elevation- edzés szintemelkedése m-ben
-GET http://localhost:8080/api/training/elevation/3
+GET http://localhost:8080/api/training/elevation/1
 Accept: application/json
 
 ###Post
