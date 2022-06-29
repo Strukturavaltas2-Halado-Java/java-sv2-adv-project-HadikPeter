@@ -31,4 +31,10 @@ public class TrainingCommand {
     private LocalDate date;
 
     private List<TrackPoint> trackpoints = new ArrayList<>();
+
+    public TrainingCommand(String name, String description, LocalDate date) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+    }
 }

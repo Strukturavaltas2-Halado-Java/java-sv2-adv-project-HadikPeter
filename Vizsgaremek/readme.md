@@ -9,7 +9,7 @@ alkalmazás létrehozása volt, ami alkalmas futóedzések vezetésére.
 
 ## Felépítés
 
-### Entitás 1
+### Coordinate
 
 A `Coordinate` entitás a következő attribútumokkal rendelkezik:
 
@@ -32,7 +32,7 @@ Végpontok:
 
 ---
 
-### Entitás 2
+### TrackPoint
 
 A `TrackPoint ` entitás a következő attribútumokkal rendelkezik:
 
@@ -58,7 +58,7 @@ egymástól.
 
 ---
 
-### Entitás 3
+### Training
 
 A `Training ` entitás a következő attribútumokkal rendelkezik:
 

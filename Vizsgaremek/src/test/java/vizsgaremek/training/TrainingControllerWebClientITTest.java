@@ -83,12 +83,17 @@ class TrainingControllerWebClientITTest {
         assertEquals("Training not found: 111", p.getDetail());
     }
 
-    /*@Test
-    void testGetSumKm(){
-        webTestClient.get().uri("api/training/sum/{id}", trainingDto.getId())
+    @Test
+    void testCreateTraining(){
+        webTestClient.post().uri("api/training/create")
+                .bodyValue(new TrainingCommand("futás", "Új reggeli futás", LocalDate.of(2022, 06, 29)))
                 .exchange()
-                .expectBody(Training.class)
-                .value(t -> assertEquals("bicigli", tr))
-    }*/
+                .expectStatus().isCreated()
+                .expectBody(TrainingDto.class)
+                .value(TrainingDto -> assertThat(TrainingDto.getName()).isEqualTo("futás"))
+                .value(TrainingDto -> assertThat(TrainingDto.getDescription()).isEqualTo("Új reggeli futás"))
+                .value(TrainingDto -> assertThat(TrainingDto.getDate()).isEqualTo(LocalDate.of(2022, 06, 29)));
+
+    }
 
 }
